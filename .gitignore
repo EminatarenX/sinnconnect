@@ -3,4 +3,4 @@ dataset/
 /dataset
 /data/test_videos
 /data/no_normalized
-
+/src/best_model.h5
