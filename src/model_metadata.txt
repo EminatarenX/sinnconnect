@@ -1,0 +1,6 @@
+input_shape: (10, 224, 224, 3)
+num_frames: 10
+frame_height: 224
+frame_width: 224
+channels: 3
+class_names: ['class_adios', 'class_ayuda', 'class_bien', 'class_comida', 'class_comoestas', 'class_hola', 'class_mgracias', 'class_no', 'class_perdon', 'class_porfavor', 'class_qhora', 'class_quehaces', 'class_si']
