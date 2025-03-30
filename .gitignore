@@ -1,6 +1,6 @@
-/data/dataset
-dataset/
-/dataset
-/data/test_videos
-/data/no_normalized
 /src/best_model.h5
+/src/model_metadata.txt
+/docs
+/models
+/results
+/data
