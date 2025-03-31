@@ -9,7 +9,7 @@ def create_directory(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-def normalize_videos(input_folder, output_folder, target_size=(224, 224)):
+def normalize_videos(input_folder, output_folder, target_size=(320, 240)):
     """
     Normalize videos by resizing them to a target size while preserving orientation.
     

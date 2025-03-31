@@ -147,7 +147,7 @@ def create_cnn_lstm_model(input_shape, num_classes, mobile_net=True):
     
     return model
 
-def train_and_evaluate(X, y, class_names, mobile_net=True, epochs=50, batch_size=32):
+def train_and_evaluate(X, y, class_names, mobile_net=True, epochs=150, batch_size=32):
     """
     Train and evaluate the model, save the best model weights.
     
