@@ -9,7 +9,7 @@ def create_directory(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-def normalize_videos(input_folder, output_folder, target_size=(320, 240)):
+def normalize_videos(input_folder, output_folder, target_size=(128, 128)):
     """
     Normalize videos by resizing them to a target size while preserving orientation.
     
@@ -69,7 +69,7 @@ def normalize_videos(input_folder, output_folder, target_size=(320, 240)):
         
     print(f"Normalized {len(video_files)} videos to {target_size}")
 
-def extract_sequences(normalized_folder, output_base_folder, n_sequences=5, n_frames=10):
+def extract_sequences(normalized_folder, output_base_folder, n_sequences=5, n_frames=5):
     """
     Extract sequences of frames from normalized videos using strategic frame selection.
     
@@ -134,7 +134,7 @@ def extract_sequences(normalized_folder, output_base_folder, n_sequences=5, n_fr
         
         # Define base reference positions (0-indexed)
         # These are the proportions along the video length
-        base_proportions = [0, 0.05, 0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85]
+        base_proportions = [ 0.45, 0.55, 0.65, 0.75, 0.85]
         
         for seq_idx in range(n_sequences):
             seq_folder = os.path.join(video_seq_folder, f"seq_{seq_idx+1}")
@@ -157,9 +157,21 @@ def extract_sequences(normalized_folder, output_base_folder, n_sequences=5, n_fr
                 if frame_pos < len(all_frames):
                     frame = all_frames[frame_pos]
                     
+                    # Get the image dimensions
+                    height, width = frame.shape[:2]
+                    
+                    # Create rotation matrix
+                    rotation_matrix = cv2.getRotationMatrix2D((width/2, height/2), -90, 1)
+                    
+                    # Perform rotation
+                    rotated_frame = cv2.warpAffine(frame, rotation_matrix, (width, height), 
+                                                   flags=cv2.INTER_LINEAR, 
+                                                   borderMode=cv2.BORDER_CONSTANT, 
+                                                   borderValue=(255, 255, 255))  # White background
+                    
                     # Save frame as JPG
                     frame_path = os.path.join(seq_folder, f"frame_{frame_idx+1:02d}.jpg")
-                    cv2.imwrite(frame_path, frame)
+                    cv2.imwrite(frame_path, rotated_frame)
                 else:
                     print(f"Warning: Frame position {frame_pos} out of range (max: {len(all_frames)-1})")
         
@@ -168,7 +180,8 @@ def extract_sequences(normalized_folder, output_base_folder, n_sequences=5, n_fr
     
     print(f"Extracted {n_sequences} sequences from {len(video_files)} videos")
 
-def process_dataset(base_folder, target_size=(224, 224), n_sequences=5, n_frames=10):
+# Rest of the script remains the same (process_dataset and __main__ block)
+def process_dataset(base_folder, target_size=(128, 128), n_sequences=5, n_frames=5):
     """
     Process the entire dataset.
     

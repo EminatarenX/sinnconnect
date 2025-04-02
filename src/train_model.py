@@ -25,7 +25,7 @@ try:
 except Exception as e:
     print(f"Error configuring GPU: {e}")
 
-def load_dataset(dataset_dir, img_size=(224, 224), n_sequences=5, n_frames=10):
+def load_dataset(dataset_dir, img_size=(128, 128), n_sequences=5, n_frames=5):
     """
     Load the dataset from the directory structure.
     
@@ -147,7 +147,7 @@ def create_cnn_lstm_model(input_shape, num_classes, mobile_net=True):
     
     return model
 
-def train_and_evaluate(X, y, class_names, mobile_net=True, epochs=150, batch_size=32):
+def train_and_evaluate(X, y, class_names, mobile_net=True, epochs=150, batch_size=2):
     """
     Train and evaluate the model, save the best model weights.
     

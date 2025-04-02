@@ -1,0 +1,8 @@
+input_shape: (5, 128, 128, 3)
+num_frames: 5
+frame_height: 128
+frame_width: 128
+channels: 3
+class_names: ['class_hola', 'class_comoestas', 'class_comida', 'class_quehaces', 'class_bien', 'class_adios', 'class_muchasgracias', 'class_perdon', 'class_porfavor', 'class_si', 'class_no', 'class_ayuda', 'class_qhorason']
+input_name: serving_default_input_1
+output_name: StatefulPartitionedCall
