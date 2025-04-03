@@ -1,0 +1,19 @@
+{
+  "predictions": [
+    {
+      "class": "comida",
+      "probability": 0.9972001314163208,
+      "rank": 1
+    },
+    {
+      "class": "perdon",
+      "probability": 0.00143089157063514,
+      "rank": 2
+    },
+    {
+      "class": "si",
+      "probability": 0.0009513911209069192,
+      "rank": 3
+    }
+  ]
+}
